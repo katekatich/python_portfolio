@@ -14,7 +14,7 @@ pd.set_option('future.no_silent_downcasting', True)
 
 ###STEP 1: Read and prepare house values data.
 #https://data.census.gov/table/ACSDT1Y2017.B25075?t=Housing%20Value%20and%20Purchase%20Price&g=9700000US1705220,1708430,5101260,5102250&y=2017
-housefile = 'housing_data/census_acs5_2017_owner_occupied_house_values.csv'
+housefile = 'census_acs5_2017_owner_occupied_house_values.csv'
 
 house_df = pd.read_csv(housefile, header=0, skiprows=[1], usecols=[0,1,3,5,7]) #skips hardcoded totals; when n number of school districts is chosen, usecols should go to n*2-1
 
@@ -81,7 +81,7 @@ for col_name, col in house_df.items():
 
 
 ##STEP 2: Read and prepare teacher salary data.
-salaryilfile = 'teacher_data/illinois_teacher_salary_study_2017.xlsx'
+salaryilfile = 'illinois_teacher_salary_study_2017.xlsx'
 salary_il_df = pd.read_excel(salaryilfile, usecols=[1,19])#, usecols=[1,16,19])
 salary_il_df.columns=salary_il_df.columns.str.replace('Beginning','Starting')
 
@@ -109,7 +109,7 @@ for col_name, col in salary_il_df.items():
 	col_name=col_name.strip()
 
 warnings.filterwarnings("ignore", category=UserWarning, module="openpyxl")
-salaryvafile = 'teacher_data/virginia_teacher_salary_study_2017.xlsx'
+salaryvafile = 'virginia_teacher_salary_study_2017.xlsx'
 salary_va_df = pd.read_excel(salaryvafile, sheet_name='Starting Teacher Salaries', skiprows=5, nrows=133, usecols=[1,3])#usecols=[1,2,3])
 
 salary_va_df['District Name']=salary_va_df['Division Name']
